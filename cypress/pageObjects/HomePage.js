@@ -44,4 +44,8 @@ export class HomePage extends BasePage {
   static get productList(){
     return cy.get("[class='mat-grid-list']");
   }
+
+  static get closeButton(){
+    return cy.get("[aria-label='Close Dialog']");
+  }
 }
