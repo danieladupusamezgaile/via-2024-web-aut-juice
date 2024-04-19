@@ -52,4 +52,12 @@ export class HomePage extends BasePage {
   static get reviews(){
     return cy.get('[class="ng-star-inserted"]');
   }
+
+  static get reviewInputField(){
+    return cy.get('[data-placeholder="What did you like or dislike?"]');
+  }
+
+  static get submitButton(){
+    return cy.get('[id="submitButton"]');
+  }
 }
