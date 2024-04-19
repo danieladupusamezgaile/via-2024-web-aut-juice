@@ -34,10 +34,14 @@ export class HomePage extends BasePage {
   }
 
   static get productCard(){
-    return cy.get("[class='mat-grid-tile-content']");
+    return cy.get("[class='mat-tooltip-trigger product']");
   }
 
   static get selectedProductCard(){
     return cy.get("[class='container mat-typography']");
+  }
+
+  static get productList(){
+    return cy.get("[class='mat-grid-list']");
   }
 }
