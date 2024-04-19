@@ -2,7 +2,7 @@ import { BasePage } from "../pageObjects/basePage";
 
 export class HomePage extends BasePage {
   static get url() {
-    return "https://juice-shop.herokuapp.com/#/";
+    return "/#/";
   }
 
   static get dismissButton() {
