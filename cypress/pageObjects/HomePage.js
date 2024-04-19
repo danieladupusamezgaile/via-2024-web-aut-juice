@@ -41,11 +41,15 @@ export class HomePage extends BasePage {
     return cy.get("[class='container mat-typography']");
   }
 
-  static get productList(){
-    return cy.get("[class='mat-grid-list']");
-  }
-
   static get closeButton(){
     return cy.get("[aria-label='Close Dialog']");
+  }
+
+  static get reviewsExpandButton(){
+    return cy.get('[aria-label="Expand for Reviews"]');
+  }
+
+  static get reviews(){
+    return cy.get('[class="ng-star-inserted"]');
   }
 }

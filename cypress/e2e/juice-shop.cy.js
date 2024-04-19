@@ -87,13 +87,13 @@ describe("Juice-shop scenarios", () => {
       // Search for 500ml
       HomePage.searchInputField.type("500ml{enter}");
       // Select a product card - Lemon Juice (500ml)
-      HomePage.productList.contains("Lemon Juice (500ml)").click();
+      HomePage.productCard.contains("Lemon Juice (500ml)").click();
       // Validate that the card (should) contains "Sour but full of vitamins."
       HomePage.selectedProductCard.should("contain.text", "Sour but full of vitamins.");
     });
 
     // Create scenario - Search 500ml and validate cards
-    it.only('Search 500ml and validate cards', () => {
+    it('Search 500ml and validate cards', () => {
       // Click on search icon
       HomePage.searchBar.click();
       // Search for 500ml
@@ -111,17 +111,24 @@ describe("Juice-shop scenarios", () => {
       // Close the card
       HomePage.closeButton.click();
       // Select a product card - Strawberry Juice (500ml)
-      HomePage.productList.contains("Strawberry Juice (500ml)").click();
+      HomePage.productCard.contains("Strawberry Juice (500ml)").click();
       // Validate that the card (should) contains "Sweet & tasty!"
       HomePage.selectedProductCard.should("contain.text", "Sweet & tasty!");
     });
 
     // Create scenario - Read a review
-    // Click on search icon
-    // Search for King
-    // Select a product card - OWASP Juice Shop "King of the Hill" Facemask
-    // Click expand reviews button/icon (wait for reviews to appear)
-    // Validate review - K33p5 y0ur ju1cy 5plu773r 70 y0ur53lf!
+    it.only('Read a review', () => {
+      // Click on search icon
+      HomePage.searchBar.click();
+      // Search for King
+      HomePage.searchInputField.type("King{enter}");
+      // Select a product card - OWASP Juice Shop "King of the Hill" Facemask
+      HomePage.productCard.contains('OWASP Juice Shop "King of the Hill" Facemask').click();
+      // Click expand reviews button/icon (wait for reviews to appear)
+      HomePage.reviewsExpandButton.click();
+      // Validate review - K33p5 y0ur ju1cy 5plu773r 70 y0ur53lf!
+      HomePage.reviews.contains("K33p5 y0ur ju1cy 5plu773r 70 y0ur53lf!").click();
+    });
 
     // Create scenario - Add a review
     // Click on search icon
