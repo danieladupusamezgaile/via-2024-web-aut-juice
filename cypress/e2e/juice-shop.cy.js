@@ -8,6 +8,7 @@ import { OrderSummaryPage } from "../pageObjects/OrderSummaryPage";
 import { OrderCompletionPage } from "../pageObjects/OrderCompletionPage";
 import { SavedAddressesPage } from "../pageObjects/SavedAddressesPage";
 import { CreateAddressPage } from "../pageObjects/CreateAddressPage";
+import { SavedPaymentMethodsPage } from "../pageObjects/SavedPaymentMethodsPage";
 
 describe("Juice-shop scenarios", () => {
   context("Without auto login", () => {
@@ -239,16 +240,31 @@ describe("Juice-shop scenarios", () => {
     });
 
     // Create scenario - Add payment option
-    // Click on Account
-    // Click on Orders & Payment
-    // Click on My payment options
-    // Create page object - SavedPaymentMethodsPage
-    // Click Add new card
-    // Fill in Name
-    // Fill in Card Number
-    // Set expiry month to 7
-    // Set expiry year to 2090
-    // Click Submit button
-    // Validate that the card shows up in the list
+    it('Add payment option', () => {
+      // Click on Account
+      HomePage.accountButton.click();
+      // Click on Orders & Payment
+      HomePage.ordersAndPaymentButton.click();
+      // Click on My payment options
+      HomePage.myPaymentOptionsButton.click();
+      // Create page object - SavedPaymentMethodsPage
+      // Click Add new card
+      SavedPaymentMethodsPage.addNewCardButton.click();
+      // Fill in Name
+      SavedPaymentMethodsPage.nameInputField.type("Harry Potter");
+      // Fill in Card Number
+      SavedPaymentMethodsPage.cardNumberInputField.type("7477483838392929");
+      // Set expiry month to 7
+      SavedPaymentMethodsPage.expiryMonthInputField.select("7");
+      // Set expiry year to 2090
+      SavedPaymentMethodsPage.expiryYearInputField.select("2090");
+      // Click Submit button
+      SavedPaymentMethodsPage.submitButton.click();
+      // Validate that the card shows up in the list
+      HomePage.accountButton.click();
+      HomePage.ordersAndPaymentButton.click();
+      HomePage.myPaymentOptionsButton.click();
+      SavedPaymentMethodsPage.savedPaymentMethods.should("contain.text", "2929 Harry Potter");
+    });
   });
 });
