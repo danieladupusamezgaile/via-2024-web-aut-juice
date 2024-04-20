@@ -6,6 +6,8 @@ import { DeliveryMethodPage } from "../pageObjects/DeliveryMethod.Page";
 import { PaymentOptionsPage } from "../pageObjects/PaymentOptionsPage";
 import { OrderSummaryPage } from "../pageObjects/OrderSummaryPage";
 import { OrderCompletionPage } from "../pageObjects/OrderCompletionPage";
+import { SavedAddressesPage } from "../pageObjects/SavedAddressesPage";
+import { CreateAddressPage } from "../pageObjects/CreateAddressPage";
 
 describe("Juice-shop scenarios", () => {
   context("Without auto login", () => {
@@ -208,15 +210,33 @@ describe("Juice-shop scenarios", () => {
     });
 
     // Create scenario - Add address
-    // Click on Account
-    // Click on Orders & Payment
-    // Click on My saved addresses
-    // Create page object - SavedAddressesPage
-    // Click on Add New Address
-    // Create page object - CreateAddressPage
-    // Fill in the necessary information
-    // Click Submit button
-    // Validate that previously added address is visible
+    it('Add address', () => {
+      // Click on Account
+      HomePage.accountButton.click();
+      // Click on Orders & Payment
+      HomePage.ordersAndPaymentButton.click();
+      // Click on My saved addresses
+      HomePage.mySavedAddressesButton.click();
+      // Create page object - SavedAddressesPage
+      // Click on Add New Address
+      SavedAddressesPage.addNewAddressButton.click();
+      // Create page object - CreateAddressPage
+      // Fill in the necessary information
+      CreateAddressPage.countryInputField.type("United Kingdom");
+      CreateAddressPage.nameInputField.type("Harry Potter");
+      CreateAddressPage.mobNumInputField.type("28974567");
+      CreateAddressPage.zipCodeInputField.type("S61QI");
+      CreateAddressPage.addressInputField.type("Penistone Road 298-14");
+      CreateAddressPage.cityInputField.type("Sheffield");
+      CreateAddressPage.stateInputField.type("Hillsborogh");
+      // Click Submit button
+      CreateAddressPage.submitButton.click();
+      // Validate that previously added address is visible
+      HomePage.accountButton.click();
+      HomePage.ordersAndPaymentButton.click();
+      HomePage.mySavedAddressesButton.click();
+      SavedAddressesPage.savedAddresses.should("contain.text", "Harry Potter").and("contain.text", "Penistone Road 298-14").and("contain.text", "S61QI");
+    });
 
     // Create scenario - Add payment option
     // Click on Account
